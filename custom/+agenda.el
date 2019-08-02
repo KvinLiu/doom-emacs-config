@@ -8,9 +8,8 @@
   (setq org-super-agenda-groups
         '((:name "Today"
                  :time-grid t
-                 :scheduled today
-                 )
-          (:name "Due Toady"
+                 :scheduled today)
+          (:name "Due Today"
                  :deadline today)
           (:name "Important"
                  :priority "A")

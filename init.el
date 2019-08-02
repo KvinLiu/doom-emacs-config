@@ -16,7 +16,8 @@
        (company           ; the ultimate code completion backend
         +tng
         +auto
-        +childframe)
+        ;; +childframe
+        )
        ;;helm              ; the *other* search engine for love and life
        ;;ido               ; the other *other* search engine...
        (ivy               ; a search engine for love and life
@@ -51,7 +52,7 @@
        file-templates    ; auto-snippets for empty files
        fold              ; (nigh) universal code folding
        (format +onsave)  ; automated prettiness
-       ;;lispy             ; vim for lisp, for people who dont like vim
+       lispy             ; vim for lisp, for people who dont like vim
        multiple-cursors  ; editing in many places at once
        ;;objed             ; text object editing for the innocent
        ;;parinfer          ; turn lisp into python, sort of
@@ -80,8 +81,9 @@
        ;;editorconfig      ; let someone else argue about tabs vs spaces
        ;;ein               ; tame Jupyter notebooks with emacs
        eval              ; run code, run (also, repls)
-       (flycheck           ; tasing you for every semicolon you forget
-        +childframe)
+       flycheck           ; tasing you for every semicolon you forget
+        ;; +childframe
+        ;;)
        (flyspell          ; tasing you for misspelling mispelling
         +aspell)
        gist              ; interacting with github gists
@@ -96,7 +98,7 @@
        pass              ; password manager for nerds
        pdf               ; pdf enhancements
        ;;prodigy           ; FIXME managing external services & code builders
-       ;;rgb               ; creating color strings
+       rgb               ; creating color strings
        ;;terraform         ; infrastructure as code
        ;; tmux              ; an API for interacting with tmux
        upload            ; map local to remote projects via ssh/ftp
@@ -148,7 +150,9 @@
        ;;php               ; perl's insecure younger brother
        plantuml          ; diagrams for confusing people more
        ;;purescript        ; javascript, but functional
-       python            ; beautiful is better than ugly
+       (python            ; beautiful is better than ugly
+        +pyenv
+        +lsp)
        ;;qt                ; the 'cutest' gui framework ever
        ;;racket            ; a DSL for DSLs
        rest              ; Emacs as a REST client
@@ -164,7 +168,7 @@
 
        :email
        ;;(mu4e +gmail)       ; WIP
-       ;;notmuch             ; WIP
+       notmuch             ; WIP
        ;;(wanderlust +gmail) ; WIP
 
        ;; Applications are complex and opinionated modules that transform Emacs
@@ -193,9 +197,3 @@
        ;; config. Use it as a reference for your own modules.
        (default +bindings +smartparens))
 
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )

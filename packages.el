@@ -5,20 +5,45 @@
 ;; (package! some-package)
 ;; (package! another-package :recipe (:fetcher github :repo "username/repo"))
 ;; (package! builtin-package :disable t)
-(package! ob-typescript)
+
 (package! indium)
 (package! reason-mode)
 (package! prettier-js)
-(package! org-fancy-priorities)
 (package! move-text)
 (package! vue-mode)
 (package! origami)
-(package! org-super-agenda)
 (package! deadgrep)
-;; (package! dart-mode)
-(package! ob-dart)
-;;(package! kotlin-mode)
 (package! sql-indent)
-(package! org-brain)
 (package! ascii-art-to-unicode)
 (package! wakatime-mode)
+
+;; language
+;;(package! dart-mode)
+;;(package! kotlin-mode)
+
+;; org-sutff
+(package! org-fancy-priorities)
+
+;; org-babel-extension
+(package! ob-typescript)
+(package! ob-dart)
+
+;; writing
+(package! org-noter)
+(package! org-jira)
+(package! ox-hugo)
+(package! writeroom-mode)
+(package! org-brain)
+
+;; shell
+(package! esh-autosuggest)
+(package! fish-completion)
+
+;; debugging
+(package! dap-mode)
+
+;; recording
+(package! gif-screencast)
+
+;; gtd
+(package! org-super-agenda)
