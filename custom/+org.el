@@ -16,15 +16,18 @@
    org-tags-column -80
    org-refile-targets (quote ((nil :maxlevel . 1))))
   ;; Org-links to emails
-  (require 'org-notmuch))
-
+  )
 ;; Hooks
+;; (add-hook 'org-mode-hook (lambda ()
+;;                            (hl-line-mode -1)))
 (add-hook 'org-mode-hook (lambda ()
-                           (hl-line-mode -1)))
+            (flycheck-mode -1)))
+
 (add-hook 'org-babel-after-execute-hook 'org-redisplay-inline-images)
-(add-hook 'org-mode-hook #'doom|disable-line-numbers)
+(add-hook 'org-mode-hook #'doom-disable-line-numbers-h)
 (add-hook 'org-mode-hook #'auto-fill-mode)
 ;; (add-hook! 'org-mode-hook (company-mode -1))
+;;
 (add-hook! 'org-capture-mode-hook (company-mode -1))
 
 ;;
@@ -144,3 +147,95 @@
 ;; (set-popup-rule! "^\\*Org Agenda" :side 'bottom :size 0.90 :select t :ttl nil)
 ;; (set-popup-rule! "^CAPTURE.*\\.org$" :side 'bottom :size 0.90 :select t :ttl nil)
 (set-popup-rule! "^\\*org-brain" :side 'right :size 1.00 :select t :ttl nil)
+
+;;
+;; Org Tags
+
+; Tags with fast selection keys
+(after! org
+  (setq org-tag-alist (quote ((:startgroup)
+                            ("@office" . ?o)
+                            ("@home" . ?H)
+                            (:endgroup)
+                            ("WAITING" . ?w)
+                            ("HOLD" . ?h)
+                            ("PERSONAL" . ?P)
+                            ("WORK" . ?W)
+                            ("ORG" . ?O)
+                            ("NORANG" . ?N)
+                            ("NOTE" . ?n)
+                            ("CANCELLED" . ?c)
+                            ("FLAGGED" . ??))))
+
+;; Allow setting single tags without the menu
+(setq org-fast-tag-selection-single-key (quote expert))
+
+;; For tag searches ignore tasks with scheduled and deadline dates
+(setq org-agenda-tags-todo-honor-ignore-options t)
+
+;;
+;; To-do settings
+(setq org-todo-keywords
+      (quote ((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d@/!)")
+              (sequence "PROJECT(p)" "|" "DONE(d!/!)" "CANCELLED(c@/!)")
+              (sequence "WAITING(w@/!)" "DELEGATED(e!)" "HOLD(h)" "|" "CANCELLED(c@/!)" "PHONE" "MEETHING")
+              (sequence "SOMEDAY" "READING" "|" "DONE")))
+      org-todo-repeat-to-state "NEXT")
+
+(setq org-todo-keyword-faces
+      (quote (("TODO" :foreground "#BE616F" :weight bold)
+              ("NEXT" :inherit warning)
+              ("PROJECT" :foreground "#3ab8a2" :weight bold)
+              ("WAITING" :foreground "#c9dcb3" :weight bold)
+              ("HOLD" :foreground "#c6ca53" :weight bold)
+              ("CANCELLED" :foreground "#5f6062" :weight bold)
+              ("MEETING" :foreground "#ffcf9c" :weight bold)
+              ("PHONE" :foreground "#d17b0f" :weight bold)
+              ("SOMEDAY":foreground "#D88373" :weight bold)
+              ("READING":foreground "#86BA90" :weight bold))))
+
+(setq org-treat-S-cursor-todo-selection-as-state-change nil)
+
+(setq org-todo-state-tags-triggers
+      (quote (("CANCELLED" ("CANCELLED" . t))
+              ("WAITING" ("WAITING" . t))
+              ("HOLD" ("WAITING") ("HOLD" . t))
+              (done ("WAITING") ("HOLD"))
+              ("TODO" ("WAITING") ("CANCELLED") ("HOLD"))
+              ("NEXT" ("WAITING") ("CANCELLED") ("HOLD"))
+              ("DONE" ("WAITING") ("CANCELLED") ("HOLD")))))
+)
+
+
+;;
+;; Org Clock
+(after! org
+  (org-clock-persistence-insinuate)
+  (setq
+   ;; Save clock data and notes in the LOGBOOK drawer
+   org-clock-into-drawer "CLOCKING"
+   ;; Show clock sums as hours and minutes, not "n days etc."
+   org-time-duration-format '(:hours "%d" :require-hours t :minutes ":%02d" :require-minutes t)
+   ;; Show lot of clocking history so it's easy to pick items off the C-F11 list
+   org-clock-history-length 23
+   ;; Resume clocking task on clock-in if the clock is open
+   org-clock-in-resume t
+   ;; Change tasks to Next when clocking in
+   org-clock-in-switch-to-state 'bh/clock-in-to-next
+   ;; Change tasks to TODO when clocking out
+   org-clock-out-switch-to-state 'bh/clock-out-to-pre
+   ;; Sometimes I change tasks I'm clocking quickly
+   ;; - this removes clocked tasks with 0:00 duration
+   org-clock-out-remove-zero-time-clocks t
+   ;; Clock out when moving task to a done state
+   org-clock-out-when-done t
+   ;; Save the running clock and all clock history when existing Emacs, load it
+   ;; on start
+   org-clock-persist t
+   ;; Do not prompt to resume an active clock
+   org-clock-persist-query-resume nil
+   ;; Enable auto clock resolution for finding open clocks
+   org-clock-auto-clock-resolution (quote when-no-clock-is-running)
+   ;; Include current clocking task in clock reports
+   org-clock-report-include-clocking-task t
+   ))

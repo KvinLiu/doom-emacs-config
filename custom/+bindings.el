@@ -29,3 +29,9 @@
           :desc "Open mail" :n "m" #'=notmuch
           :desc "Open visualize brain" :n "v" #'org-brain-visualize)
         ))
+
+;; This is for my org-mode settings
+(map! :g "<f9> I" 'bh/punch-in
+      :g "<f9> O" 'bh/punch-out
+      :g "<f9> i" 'my/copy-idlink-to-clipboard
+      :g "<f9> SPC" 'bh/clock-in-last-task)

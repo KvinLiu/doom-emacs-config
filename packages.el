@@ -16,6 +16,7 @@
 (package! sql-indent)
 (package! ascii-art-to-unicode)
 (package! wakatime-mode)
+(package! leetcode)
 
 ;; language
 ;;(package! dart-mode)
@@ -34,6 +35,7 @@
 (package! ox-hugo)
 (package! writeroom-mode)
 (package! org-brain)
+(package! org-bullets)
 
 ;; shell
 (package! esh-autosuggest)

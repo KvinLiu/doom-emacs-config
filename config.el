@@ -10,7 +10,7 @@
 ;; - looks
 (setq ;;doom-modeline-height 40
  +doom-modeline-buffer-file-name-style 'relative-from-project
- doom-theme 'doom-city-lights
+ doom-theme 'doom-nord
  +workspaces-switch-project-function #'ignore)
 
 ;; - prettify modes
@@ -34,7 +34,7 @@
   (setq doom-font (font-spec :family "Roboto Mono" :size 14)))
 (when IS-MAC
   (setq ns-use-thin-smoothing t
-        doom-font (font-spec :family "Fira Code" :size 14)
+        doom-font (font-spec :family "Roboto Mono" :size 16)
         doom-big-font (font-spec :family "Fira Code" :size 20)
         doom-variable-pitch-font (font-spec :family "Avenir Next" :size 16)
         +doom-dashboard-banner-file (expand-file-name "logo.png" doom-private-dir)
@@ -43,7 +43,9 @@
         global-auto-revert-mode t
         )
   (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
-  (add-to-list 'default-frame-alist '(ns-appearance . dark)))
+  (add-to-list 'default-frame-alist '(ns-appearance . dark))
+  (add-to-list 'initial-frame-alist '(width  . 100))
+  (add-to-list 'initial-frame-alist '(height . 50)))
 
 ;; Core Emacs
 
@@ -331,6 +333,7 @@
 ;;
 ;; Load other config files
 (load! "custom/+agenda")
+(load! "custom/+org-clocking")
 (load! "custom/+bindings")
 (load! "custom/+brain")
 (load! "custom/+debug")

@@ -97,7 +97,7 @@
        make              ; run make tasks from Emacs
        pass              ; password manager for nerds
        pdf               ; pdf enhancements
-       ;;prodigy           ; FIXME managing external services & code builders
+       prodigy           ; FIXME managing external services & code builders
        rgb               ; creating color strings
        ;;terraform         ; infrastructure as code
        ;; tmux              ; an API for interacting with tmux
@@ -107,7 +107,7 @@
        :lang
        ;;agda              ; types of types of types of types...
        ;;assembly          ; assembly for fun or debugging
-       ;;cc                ; C/C++/Obj-C madness
+       cc                ; C/C++/Obj-C madness
        ;;clojure           ; java with a lisp
        ;;common-lisp       ; if you've seen one lisp, you've seen them all
        ;;coq               ; proofs-as-programs
@@ -197,3 +197,54 @@
        ;; config. Use it as a reference for your own modules.
        (default +bindings +smartparens))
 
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(ansi-color-faces-vector
+   [default default default italic underline success warning error])
+ '(ansi-color-names-vector
+   ["#181E24" "#d55e00" "#009e73" "#f8ec59" "#0072b2" "#cc79a7" "#56b4e9" "white"])
+ '(custom-safe-themes
+   (quote
+    ("f951343d4bbe5a90dba0f058de8317ca58a6822faa65d8463b0e751a07ec887c" "a2286409934b11f2f3b7d89b1eaebb965fd63bc1e0be1c159c02e396afb893c8" "1728dfd9560bff76a7dc6c3f61e9f4d3e6ef9d017a83a841c117bd9bebe18613" "70ed3a0f434c63206a23012d9cdfbe6c6d4bb4685ad64154f37f3c15c10f3b90" "071f5702a5445970105be9456a48423a87b8b9cfa4b1f76d15699b29123fb7d8" "2a3ffb7775b2fe3643b179f2046493891b0d1153e57ec74bbe69580b951699ca" "332e009a832c4d18d92b3a9440671873187ca5b73c2a42fbd4fc67ecf0379b8c" default)))
+ '(fci-rule-color "#556873")
+ '(jdee-db-active-breakpoint-face-colors (cons "#0d0f11" "#7FC1CA"))
+ '(jdee-db-requested-breakpoint-face-colors (cons "#0d0f11" "#A8CE93"))
+ '(jdee-db-spec-breakpoint-face-colors (cons "#0d0f11" "#899BA6"))
+ '(mouse-wheel-progressive-speed nil)
+ '(mouse-wheel-scroll-amount (quote (1 ((shift) . 5) ((control)))))
+ '(objed-cursor-color "#DF8C8C")
+ '(python-shell-interpreter "python3.7")
+ '(vc-annotate-background "#3c4c55")
+ '(vc-annotate-color-map
+   (list
+    (cons 20 "#A8CE93")
+    (cons 40 "#b8d293")
+    (cons 60 "#c9d693")
+    (cons 80 "#DADA93")
+    (cons 100 "#e2d291")
+    (cons 120 "#eaca90")
+    (cons 140 "#F2C38F")
+    (cons 160 "#e7b1a0")
+    (cons 180 "#dc9fb1")
+    (cons 200 "#D18EC2")
+    (cons 220 "#d58db0")
+    (cons 240 "#da8c9e")
+    (cons 260 "#DF8C8C")
+    (cons 280 "#c98f92")
+    (cons 300 "#b39399")
+    (cons 320 "#9e979f")
+    (cons 340 "#556873")
+    (cons 360 "#556873")))
+ '(vc-annotate-very-old-color nil)
+ '(wakatime-api-key "fd8c6082-9b71-4459-b755-6d590f74921b")
+ '(wakatime-cli-path "wakatime")
+ '(wakatime-python-bin nil))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
