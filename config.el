@@ -1,17 +1,20 @@
 ;;; ~/.doom.d/config.el -*- lexical-binding: t; -*-
 
 ;; Place your private configuration here
-
+(setq-default evil-shift-width 2 ;; I normally use 2wide for my projects.
+              tab-width 2)
 ;;
 ;; UI
 (setq user-full-name "Kevin Liu"
       user-mail-address "kevin07liu@gmail.com")
 
 ;; - looks
-(setq ;;doom-modeline-height 40
- +doom-modeline-buffer-file-name-style 'relative-from-project
- doom-theme 'doom-nord
+(setq
+ doom-modeline-height 40
+ doom-modeline-buffer-file-name-style 'relative-from-project
+ doom-theme 'doom-nord-light
  +workspaces-switch-project-function #'ignore)
+
 
 ;; - prettify modes
 ;; (setq +pretty-code-enabled-modes '(emacs-lisp-mode org-mode))
@@ -34,9 +37,9 @@
   (setq doom-font (font-spec :family "Roboto Mono" :size 14)))
 (when IS-MAC
   (setq ns-use-thin-smoothing t
-        doom-font (font-spec :family "Roboto Mono" :size 16)
+        doom-font (font-spec :family "Roboto Mono" :size 18)
         doom-big-font (font-spec :family "Fira Code" :size 20)
-        doom-variable-pitch-font (font-spec :family "Avenir Next" :size 16)
+        doom-variable-pitch-font (font-spec :family "Avenir Next" :size 18)
         +doom-dashboard-banner-file (expand-file-name "logo.png" doom-private-dir)
         mac-option-modifier 'super
         mac-command-modifier 'meta
@@ -102,6 +105,7 @@
    "rg"  "rg --color=always $*"
    "bat" "my/eshell-bat $1")
   (setenv "PAGER" "cat"))
+
 ;; fish-like auto-suggestions
 (def-package! esh-autosuggest
   :after eshell
@@ -110,6 +114,7 @@
   (when (and (executable-find "fish")
              (require 'fish-completion nil t))
     (global-fish-completion-mode)))
+
 ;; improved terminal emulator
 (after! vterm
   (setq vterm-max-scrollback 50000))
@@ -190,6 +195,10 @@
                           'magit-insert-modules
                           'magit-insert-unpulled-from-upstream)
   (setq magit-module-sections-nested nil))
+
+;; (setq magit-repository-directories '(("~/Dorpbox/myprojects/" . 2) ("~/.doom.d" . 2)))
+
+
 ;; improve diff of org-mode files
 (add-hook 'ediff-prepare-buffer-hook #'outline-show-all)
 
@@ -240,9 +249,6 @@
 ;; Flycheck
 (add-hook 'text-mode-hook (lambda ()
                             (flycheck-mode -1)))
-(add-hook 'org-mode-hook (lambda ()
-                           (flycheck-mode -1)))
-
 
 ;;
 ;; Auto-formatting
@@ -333,7 +339,7 @@
 ;;
 ;; Load other config files
 (load! "custom/+agenda")
-(load! "custom/+org-clocking")
+;; (load! "custom/+org-clocking")
 (load! "custom/+bindings")
 (load! "custom/+brain")
 (load! "custom/+debug")

@@ -35,7 +35,7 @@
 (package! ox-hugo)
 (package! writeroom-mode)
 (package! org-brain)
-(package! org-bullets)
+;; (package! org-bullets)
 
 ;; shell
 (package! esh-autosuggest)
@@ -47,5 +47,7 @@
 ;; recording
 (package! gif-screencast)
 
-;; gtd
+;; GTD
 (package! org-super-agenda)
+(package! org-recur)
+(package! yankpad)
